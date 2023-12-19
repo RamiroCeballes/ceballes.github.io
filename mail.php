@@ -1,37 +1,32 @@
 <?php
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recibe los datos del formulario
-    $name = strip_tags(trim($_POST["name"]));
-    $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
-    $message = trim($_POST["message"]);
-
-    // Verifica que los campos requeridos no estén vacíos
-    if (empty($name) || empty($email) || empty($message)) {
-        echo "Por favor, completa todos los campos.";
-        exit;
-    }
-
-    // Configura la dirección de correo electrónico y el asunto
-    $recipient = "ramiro.adrian.ceballes@gmail.com";
-    $subject = "Nuevo mensaje de contacto de $name";
-
-    // Construye el cuerpo del correo electrónico
-    $email_content = "Nombre: $name\n";
-    $email_content .= "Correo electrónico: $email\n\n";
-    $email_content .= "Mensaje:\n$message\n";
-
-    // Configura los encabezados del correo electrónico
-    $headers = "De: $name <$email>";
-
-    // Envía el correo electrónico
-    if (mail($recipient, $subject, $email_content, $headers)) {
-        echo "OK";
-    } else {
-        echo "Hubo un problema al enviar el mensaje. Inténtalo de nuevo más tarde.";
-    }
-} else {
-    // Si no es una solicitud POST, redirige a la página de inicio del sitio o muestra un mensaje de error
-    echo "Acceso no permitido.";
+$name = $_POST['name'];
+$email = $_POST['email'];
+$message = $_POST['message'];
+$subject = $_POST['subject'];
+if ($name === ''){
+  echo "El nombre no puede estar vacío.";
+  die();
 }
+if ($email === ''){
+  echo "El mail no puede estar vacío.";
+  die();
+} else {
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+    echo "Formato de mail inválido.";
+    die();
+  }
+}
+if ($subject === ''){
+  echo "El asunto no puede estar vacío.";
+  die();
+}
+if ($message === ''){
+  echo "El mensaje no puede estar vacío.";
+  die();
+}
+$content="De: $name \nE-mail: $email \nTelefono: $phone \nMensaje: $message";
+$recipient = "ramiro.adrian.ceballes@gmail.com";
+$mailheader = "From: $email \r\n";
+mail($recipient, $subject, $content, $mailheader) or die("Error!");
+echo "Mail enviado!";
 ?>

@@ -1149,3 +1149,14 @@ a:hover {
 .services-mf .col-md-4 {
   margin-bottom: 40px;
 }
+.footer-mf-simple {
+  background-color: #1e1e1e;
+  color: #fff;
+  padding: 20px 0;
+}
+
+.footer-mf-simple .copyright {
+  margin: 0;
+  font-size: 14px;
+  color: #ccc;
+}

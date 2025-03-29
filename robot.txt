@@ -1,0 +1,24 @@
+# Permitir rastreo completo a todos los motores de búsqueda
+User-agent: *
+Allow: /
+
+# Permitir específicamente rastrear imágenes (importante para posicionamiento en Google Imágenes)
+User-agent: Googlebot-Image
+Allow: /img/
+
+# Bloquear directorios sensibles o que no deban indexarse (si tienes alguno específico)
+Disallow: /admin/
+Disallow: /lib/
+Disallow: /contactform/
+
+# Bloquear archivos de configuración, JS y CSS innecesarios para SEO
+Disallow: /*.config$
+Disallow: /*.json$
+Disallow: /*.md$
+
+# Permitir CSS y JS esenciales para el rastreo correcto
+Allow: /css/*.css
+Allow: /js/*.js
+
+# Ubicación del sitemap para todos los motores de búsqueda
+Sitemap: https://ramiroceballes.com.ar/sitemap.xml

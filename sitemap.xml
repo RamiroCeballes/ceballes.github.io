@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Página principal -->
+  <url>
+    <loc>https://ramiroceballes.com.ar/</loc>
+    <lastmod>2025-03-29</lastmod>
+    <priority>1.00</priority>
+  </url>
+
+  <!-- Sobre mí -->
+  <url>
+    <loc>https://ramiroceballes.com.ar/#about</loc>
+    <lastmod>2025-03-29</lastmod>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Habilidades -->
+  <url>
+    <loc>https://ramiroceballes.com.ar/#service</loc>
+    <lastmod>2025-03-29</lastmod>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Portfolio -->
+  <url>
+    <loc>https://ramiroceballes.com.ar/#work</loc>
+    <lastmod>2025-03-29</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Contacto -->
+  <url>
+    <loc>https://ramiroceballes.com.ar/#contact</loc>
+    <lastmod>2025-03-29</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+</urlset>

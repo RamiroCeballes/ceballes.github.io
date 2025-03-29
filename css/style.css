@@ -1041,3 +1041,73 @@ a:hover {
     bottom: 15px;
   }
 }
+
+.service-box {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Misma altura */
+  margin-bottom: 30px; /* separación vertical */
+}
+
+.service-box .service-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.service-box .s-description {
+  flex-grow: 1; /* Ocupa espacio restante */
+}
+.services-mf .service-box {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.services-mf .service-box .service-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.services-mf .service-box .service-content .s-description {
+  flex-grow: 1;
+}
+
+.services-mf .col-md-4 {
+  margin-bottom: 40px; /* Separación vertical real */
+}
+.skills-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.skill-icon {
+  text-align: center;
+  color: #4e4e4e;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.skill-icon i {
+  font-size: 3rem;
+  color: #0078ff;
+  transition: transform 0.3s;
+}
+
+.skill-icon span {
+  display: block;
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.skill-icon:hover {
+  transform: translateY(-5px);
+  color: #0078ff;
+}
+
+.skill-icon:hover i {
+  transform: scale(1.2);
+}

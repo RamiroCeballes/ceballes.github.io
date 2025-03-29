@@ -1077,37 +1077,75 @@ a:hover {
 .services-mf .col-md-4 {
   margin-bottom: 40px; /* Separación vertical real */
 }
+/* Estilos para los iconos de habilidades */
 .skills-icons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  justify-items: center;
+  margin-top: 20px;
 }
 
 .skill-icon {
   text-align: center;
-  color: #4e4e4e;
-  transition: transform 0.3s, color 0.3s;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform .3s, box-shadow .3s;
 }
 
 .skill-icon i {
-  font-size: 3rem;
+  font-size: 60px;
   color: #0078ff;
-  transition: transform 0.3s;
 }
 
 .skill-icon span {
+  margin-top: 10px;
   display: block;
-  margin-top: 5px;
-  font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .skill-icon:hover {
-  transform: translateY(-5px);
-  color: #0078ff;
+  transform: translateY(-8px);
+  box-shadow: 0 10px 15px rgba(0,120,255,.3);
 }
 
-.skill-icon:hover i {
-  transform: scale(1.2);
+/* Media Queries para los iconos (responsive) */
+@media (max-width: 768px) {
+  .skill-icon i {
+    font-size: 40px;
+  }
+
+  .skills-icons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .skills-icons {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Solución a la altura desigual de las Cards en Servicios */
+.services-mf .service-box {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.services-mf .service-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.services-mf .s-description {
+  flex-grow: 1;
+}
+
+/* Separación vertical entre Cards en Servicios */
+.services-mf .col-md-4 {
+  margin-bottom: 40px;
 }

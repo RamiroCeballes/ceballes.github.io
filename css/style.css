@@ -1160,3 +1160,19 @@ a:hover {
   font-size: 14px;
   color: #ccc;
 }
+
+.service-box ul {
+  padding: 0;
+  list-style: none;
+}
+
+.service-box ul li {
+  margin: 10px 0;
+  font-size: 15px;
+}
+
+.service-box h5 {
+  margin: 10px 0;
+  color: #0078ff;
+  font-size: 1.6rem;
+}

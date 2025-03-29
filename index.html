@@ -337,53 +337,53 @@
             <div id="contact" class="box-shadow-full">
               <div class="row">
   
-                <!-- Primera columna: Formulario -->
-                <div class="col-md-6">
-                  <div class="title-box-2">
-                    <h5 class="title-left">¡Escríbeme un mail!</h5>
-                  </div>
-                  <div>
-                    <form action="https://formsubmit.co/ramiro.adrian.ceballes@gmail.com" method="POST" role="form" class="contactForm">
-                      <input type="hidden" name="_next" value="https://ramiroceballes.com.ar/gracias.html">
-                      <input type="hidden" name="_captcha" value="false">
-  
-                      <div class="row">
-                        <div class="col-md-12 mb-3">
-                          <div class="form-group">
-                            <input type="text" name="name" class="form-control" placeholder="Tu nombre" required minlength="4" />
-                            <div class="validation"></div>
-                          </div>
-                        </div>
-  
-                        <div class="col-md-12 mb-3">
-                          <div class="form-group">
-                            <input type="email" class="form-control" name="email" placeholder="Tu Email" required />
-                            <div class="validation"></div>
-                          </div>
-                        </div>
-  
-                        <div class="col-md-12 mb-3">
-                          <div class="form-group">
-                            <input type="text" class="form-control" name="subject" placeholder="Asunto" required minlength="4" />
-                            <div class="validation"></div>
-                          </div>
-                        </div>
-  
-                        <div class="col-md-12 mb-3">
-                          <div class="form-group">
-                            <textarea class="form-control" name="message" rows="5" placeholder="Mensaje" required></textarea>
-                            <div class="validation"></div>
-                          </div>
-                        </div>
-  
-                        <div class="col-md-12">
-                          <button type="submit" class="button button-a button-big button-rouded">Manda el mail</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div> <!-- FIN Primera columna -->
-  
+  <!-- Primera columna: Formulario -->
+<div class="col-md-6">
+  <div class="title-box-2">
+    <h5 class="title-left">¡Escríbeme un mail!</h5>
+  </div>
+  <div>
+    <form id="contact-form" method="POST" role="form" class="contactForm">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          <div class="form-group">
+            <input type="text" name="name" class="form-control" placeholder="Tu nombre" required minlength="4" />
+            <div class="validation"></div>
+          </div>
+        </div>
+
+        <div class="col-md-12 mb-3">
+          <div class="form-group">
+            <input type="email" class="form-control" name="email" placeholder="Tu Email" required />
+            <div class="validation"></div>
+          </div>
+        </div>
+
+        <div class="col-md-12 mb-3">
+          <div class="form-group">
+            <input type="text" class="form-control" name="subject" placeholder="Asunto" required minlength="4" />
+            <div class="validation"></div>
+          </div>
+        </div>
+
+        <div class="col-md-12 mb-3">
+          <div class="form-group">
+            <textarea class="form-control" name="message" rows="5" placeholder="Mensaje" required></textarea>
+            <div class="validation"></div>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <button type="submit" class="button button-a button-big button-rouded">Manda el mail</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
                 <!-- Segunda columna: Información de contacto -->
                 <div class="col-md-6">
                   <div class="title-box-2 pt-4 pt-md-0">
@@ -434,6 +434,30 @@
   <script src="lib/typed/typed.min.js"></script>
   <script src="contactform/contactform.js"></script>
   <script src="js/main.js"></script>
-
+  <script>
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault(); // Evita el envío por defecto
+  
+      const formData = new FormData(form);
+  
+      try {
+        const res = await fetch("https://formsubmit.co/ramiro.adrian.ceballes@gmail.com", {
+          method: "POST",
+          body: formData
+        });
+  
+        if (res.ok) {
+          alert("¡Mensaje enviado correctamente!");
+          form.reset(); // Limpia el formulario
+        } else {
+          alert("Error al enviar el mensaje. Por favor, intenta más tarde.");
+        }
+      } catch (err) {
+        alert("Hubo un problema con la conexión. Intenta nuevamente.");
+      }
+    });
+  </script>
+  
 </body>
 </html>

@@ -358,8 +358,10 @@ img {
 }
 
 .portfolio-card img {
+  width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .portfolio-card div {
@@ -500,6 +502,11 @@ img {
 
   .portfolio-card {
     grid-template-columns: 1fr;
+  }
+
+  .portfolio-card img {
+    height: auto;
+    aspect-ratio: 16 / 10;
   }
 
   .nav-links {

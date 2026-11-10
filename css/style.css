@@ -392,7 +392,7 @@ img {
   display: block;
 }
 
-.portfolio-card div {
+.portfolio-card > div {
   padding: 1.4rem 1.6rem 1.6rem;
   display: flex;
   flex-direction: column;
@@ -415,7 +415,7 @@ img {
 }
 
 .portfolio-card .portfolio-links {
-  padding: 0;
+  display: flex;
   margin-top: auto;
   padding-top: 0.6rem;
   flex-direction: row;

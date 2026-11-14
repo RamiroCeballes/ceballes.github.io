@@ -494,7 +494,7 @@
           <a class="btn ghost" href="mailto:info@ramiroceballes.com.ar?subject=Consulta%20Consultor%C3%ADa">Solicitar pedido</a>
         </article>
       </div>
-      <p class="price-note" id="price-note" hidden></p>
+      <p class="price-note" id="price-note" hidden>Valores en pesos orientativos, al dólar oficial de hoy (fuente: DolarApi). El precio final se acuerda en dólares o en pesos al momento de presupuestar.</p>
     </div>
   </section>
 
@@ -583,22 +583,30 @@
       navToggle.setAttribute('aria-expanded', 'false');
     }));
 
-    // Precios en pesos (orientativos). Actualizar valor y fecha cuando cambie el dólar.
-    // TODO: completar con el dólar oficial BNA (venta). Mientras valor sea null, no se muestran pesos.
-    const DOLAR_BNA = { valor: null, fecha: '' }; // ej.: { valor: 1450, fecha: '14/11/2026' }
+    // Precios en pesos: dólar oficial (venta) en vivo desde DolarApi.
+    // Si la API falla, tarda más de 4 s o devuelve algo raro, no se muestra nada: quedan solo los USD.
+    (async function mostrarPesos() {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 4000);
+      try {
+        const res = await fetch('https://dolarapi.com/v1/dolares/oficial', { signal: controller.signal });
+        if (!res.ok) return;
+        const venta = Number((await res.json()).venta);
+        if (!Number.isFinite(venta) || venta <= 0) return;
 
-    if (DOLAR_BNA.valor) {
-      const fmt = new Intl.NumberFormat('es-AR', { maximumFractionDigits: 0 });
-      document.querySelectorAll('.price-ars').forEach((el) => {
-        const ars = Math.round((Number(el.dataset.usd) * DOLAR_BNA.valor) / 1000) * 1000;
-        el.textContent = (el.hasAttribute('data-desde') ? 'Desde aprox. $ ' : 'aprox. $ ') + fmt.format(ars);
-        el.hidden = false;
-      });
-      const note = document.getElementById('price-note');
-      note.textContent = 'Los valores en pesos son orientativos: están calculados con el dólar oficial del Banco Nación (venta) a $ ' +
-        fmt.format(DOLAR_BNA.valor) + ' al ' + DOLAR_BNA.fecha + '. El precio final se confirma al presupuestar.';
-      note.hidden = false;
-    }
+        const fmt = new Intl.NumberFormat('es-AR', { maximumFractionDigits: 0 });
+        document.querySelectorAll('.price-ars').forEach((el) => {
+          const ars = Math.round((Number(el.dataset.usd) * venta) / 1000) * 1000;
+          el.textContent = (el.hasAttribute('data-desde') ? 'desde aprox. $' : 'aprox. $') + fmt.format(ars);
+          el.hidden = false;
+        });
+        document.getElementById('price-note').hidden = false;
+      } catch (err) {
+        // sin pesos: se queda como estaba
+      } finally {
+        clearTimeout(timer);
+      }
+    })();
 
     // Modal de proyectos de software.
     // TODO: completar el stack de Gestión Hotel, Gestión Bar y Facturero (si queda vacío, no se muestra).

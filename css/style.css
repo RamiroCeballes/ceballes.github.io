@@ -677,3 +677,98 @@ img {
     transition: none !important;
   }
 }
+
+/* Portfolio: etiqueta "Concepto" y modal de proyectos */
+.portfolio-card > .portfolio-thumb {
+  position: relative;
+  padding: 0;
+  display: block;
+  flex: none;
+}
+
+.concept-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fef8ef;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  box-shadow: 0 6px 16px rgba(31, 39, 50, 0.25);
+}
+
+.project-modal {
+  width: min(960px, 92vw);
+  max-height: 90vh;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  overflow: auto;
+}
+
+.project-modal::backdrop {
+  background: rgba(31, 39, 50, 0.7);
+}
+
+.project-modal-img {
+  width: 100%;
+  height: auto;
+  background: var(--line);
+}
+
+.project-modal-body {
+  padding: 1.6rem 2rem 2rem;
+}
+
+.project-modal-body h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  margin: 0 0 0.6rem;
+}
+
+.project-modal-desc {
+  color: var(--muted);
+  margin: 0 0 0.8rem;
+}
+
+.project-modal-stack {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.project-modal-full {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+.project-modal-close {
+  position: sticky;
+  top: 12px;
+  float: right;
+  margin: 12px 12px -54px 0;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+}
+
+@media (max-width: 640px) {
+  .project-modal-body {
+    padding: 1.2rem 1.2rem 1.6rem;
+  }
+}

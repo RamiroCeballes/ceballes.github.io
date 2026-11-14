@@ -218,20 +218,27 @@ img {
   transform: translateY(-2px);
 }
 
-.hero-badges {
-  display: flex;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-  margin-top: 2rem;
+.stack-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   color: var(--muted);
-  font-size: 0.9rem;
+  margin: 2rem 0 0.6rem;
 }
 
-.hero-badges span {
-  border: 1px solid var(--line);
-  padding: 0.4rem 0.8rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.6);
+.stack-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+}
+
+.stack-list li:not(:last-child)::after {
+  content: "·";
+  margin: 0 0.55rem;
+  color: var(--accent-text);
 }
 
 .hero-card {
@@ -483,6 +490,21 @@ img {
 .price {
   font-size: 1.6rem;
   font-weight: 600;
+  margin: 0;
+}
+
+.price-ars {
+  margin: -0.8rem 0 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.price-note {
+  margin: 2rem auto 0;
+  max-width: 640px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
 .contact {

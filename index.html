@@ -352,7 +352,7 @@
           <div>
             <h4>Chatbot de ventas</h4>
             <p class="portfolio-meta">IA · Node.js · 2026</p>
-            <p>Asistente multi-canal con catálogo, precios y stock reales, y modelo propio entrenado.</p>
+            <p>Asistente de ventas con catálogo, precios y stock reales, y modelo propio entrenado. Hoy en la web; preparado para WhatsApp e Instagram.</p>
             <div class="portfolio-links">
               <a href="img/chatbot.jpg" class="js-project" data-project="chatbot" aria-haspopup="dialog">Ver captura</a>
             </div>
@@ -634,35 +634,35 @@
     })();
 
     // Modal de proyectos de software.
-    // TODO: completar el stack de Gestión Hotel, Gestión Bar y Facturero (si queda vacío, no se muestra).
+    // Si un proyecto no tiene stack, la línea no se muestra.
     const PROJECTS = {
       facturero: {
         title: 'Facturero ARCA',
         img: 'img/factureroArca.jpg',
         alt: 'Pantalla de facturación: datos del comprobante, carga de ítems y total',
         desc: 'Software de facturación electrónica integrado con la API de ARCA (ex AFIP). Hoy está en producción.',
-        stack: ''
+        stack: 'Python · Tkinter · web services de ARCA (WSFEv1) · SQLite · impresión de comprobantes'
       },
       hotel: {
         title: 'Gestión Hotel',
         img: 'img/gestion-hotel.jpg',
         alt: 'Planilla de habitaciones por fecha, con reservas y ocupación marcadas por color',
         desc: 'Software de escritorio para hoteles: reservas, check-in/out, tarifas, mucamas y reportes con control de overbooking. En uso en el Hotel Coronado de Villa Carlos Paz.',
-        stack: ''
+        stack: 'Python · CustomTkinter · tkcalendar · SQLite · exportación a Excel (openpyxl) · ejecutable para Windows (PyInstaller)'
       },
       bar: {
         title: 'Gestión Bar',
         img: 'img/gestion-bar.jpg',
         alt: 'Comanda de una mesa: buscador de productos, ítems cargados y total',
         desc: 'Software de escritorio para bares: salón, comandas, caja y cierre de mozos, con facturación electrónica ARCA. En uso en el Bar La Caleta de Villa Carlos Paz.',
-        stack: ''
+        stack: 'Python · ttkbootstrap · SQLAlchemy + Alembic · SQLite · facturación electrónica ARCA propia (WSAA y WSFEv1) · exportación a Excel (openpyxl)'
       },
       chatbot: {
         title: 'Chatbot de ventas',
         img: 'img/chatbot.jpg',
         alt: 'Chat del asistente de ventas respondiendo precio y stock de un taladro',
-        desc: 'Asistente multicanal que responde con el catálogo, los precios y el stock reales del negocio, con un modelo propio entrenado.',
-        stack: 'Node.js · IA'
+        desc: 'Asistente de ventas que responde con el catálogo, los precios y el stock reales del negocio, con un modelo propio entrenado. Hoy funciona como widget web y está preparado para sumar WhatsApp e Instagram.',
+        stack: 'TypeScript · Node.js · Fastify · PostgreSQL + Drizzle ORM · Redis · Ollama (modelos locales y un modelo propio entrenado) · Zod · Docker'
       }
     };
 

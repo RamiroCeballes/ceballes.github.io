@@ -575,7 +575,7 @@
 
   <dialog id="project-modal" class="project-modal" aria-labelledby="project-modal-title">
     <button type="button" class="project-modal-close" aria-label="Cerrar">&times;</button>
-    <img class="project-modal-img" src="" alt="">
+    <img class="project-modal-img" alt="">
     <div class="project-modal-body">
       <h3 id="project-modal-title"></h3>
       <p class="project-modal-desc"></p>
@@ -691,6 +691,7 @@
       });
 
       modal.querySelector('.project-modal-close').addEventListener('click', () => modal.close());
+      modal.addEventListener('close', () => mImg.removeAttribute('src'));
       modal.addEventListener('click', (e) => { if (e.target === modal) modal.close(); });
     }
 

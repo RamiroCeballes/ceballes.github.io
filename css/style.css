@@ -780,10 +780,15 @@ img {
   border-bottom: 1px solid var(--line);
 }
 
-.case-grid {
+.case-compare {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.8rem;
+  margin-top: 1.8rem;
+}
+
+.case-design {
+  margin-top: 1.8rem;
 }
 
 .case-block {
@@ -809,6 +814,74 @@ img {
   padding-left: 1.1rem;
   display: grid;
   gap: 0.6rem;
+}
+
+.case-problem p {
+  font-size: 1.05rem;
+  max-width: 820px;
+}
+
+.case-before ul,
+.case-after ul,
+.case-design ul {
+  list-style: none;
+  padding: 0;
+}
+
+.case-before li,
+.case-after li {
+  padding-left: 1.6rem;
+  position: relative;
+}
+
+.case-before li::before,
+.case-after li::before {
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+}
+
+.case-before li::before {
+  content: "✕";
+  color: var(--muted);
+}
+
+.case-after {
+  border: 1px solid rgba(255, 122, 61, 0.4);
+}
+
+.case-after li {
+  color: var(--ink);
+}
+
+.case-after li::before {
+  content: "✓";
+  color: var(--accent-text);
+}
+
+.case-design ul {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+}
+
+.case-design li {
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
+}
+
+.case-quote {
+  margin: 2.5rem auto 0;
+  max-width: 760px;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
+}
+
+.case-quote footer {
+  margin-top: 0.6rem;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: 0.95rem;
+  color: var(--muted);
 }
 
 .case-block strong {
@@ -874,8 +947,9 @@ img {
 }
 
 @media (max-width: 980px) {
-  .case-grid,
-  .case-shots {
+  .case-compare,
+  .case-shots,
+  .case-design ul {
     grid-template-columns: 1fr;
   }
 }

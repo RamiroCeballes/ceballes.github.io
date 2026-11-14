@@ -13,8 +13,14 @@
   <meta property="og:title" content="Ramiro Ceballes — Desarrollo web y software">
   <meta property="og:description" content="Webs, apps y sistemas a medida. Diseño, desarrollo y acompañamiento profesional.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://ramiroceballes.com.ar">
-  <meta property="og:image" content="https://ramiroceballes.com.ar/img/intro-bg.jpg">
+  <meta property="og:url" content="https://ramiroceballes.com.ar/">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:image" content="https://ramiroceballes.com.ar/img/ramiro-ceballes.jpg">
+  <meta property="og:image:width" content="781">
+  <meta property="og:image:height" content="758">
+  <meta property="og:image:alt" content="Retrato de Ramiro Ceballes, desarrollador de software">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://ramiroceballes.com.ar/">
 
   <link href="img/favicon.png" rel="icon">
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -70,7 +76,7 @@
       </div>
       <div class="hero-card">
         <div class="hero-image">
-          <img src="img/testimonial-2.jpg" alt="Retrato de Ramiro Ceballes">
+          <img src="img/ramiro-ceballes.jpg" alt="Ramiro Ceballes sonriendo, de traje gris y corbata roja, sentado junto a una ventana" width="781" height="758">
         </div>
         <div class="hero-meta">
           <p>Villa Parque Siquiman, Córdoba</p>
@@ -140,7 +146,7 @@
         </article>
         <article class="service-card">
           <h3>Apps móviles</h3>
-          <p>Aplicaciones Android nativas o híbridas con interfaces limpias y rendimiento real.</p>
+          <p>Aplicaciones para Android e iOS, nativas o híbridas, con interfaces limpias y rendimiento real.</p>
         </article>
         <article class="service-card">
           <h3>Fullstack</h3>
@@ -341,7 +347,7 @@
             <li>Formulario de contacto</li>
             <li>Entrega en 7 días</li>
           </ul>
-          <a class="btn ghost" href="mailto:info@ramiroceballes.com.ar?subject=Solicitud%20Plan%20Web%20Básico">Solicitar pedido</a>
+          <a class="btn ghost" href="mailto:info@ramiroceballes.com.ar?subject=Solicitud%20Plan%20Web%20B%C3%A1sico">Solicitar pedido</a>
         </article>
         <article class="plan-card featured">
           <h3>Web Profesional</h3>
@@ -371,11 +377,11 @@
           <h3>App Móvil</h3>
           <p class="price">Desde USD 1.500</p>
           <ul>
-            <li>Android nativa o híbrida</li>
+            <li>Android e iOS, nativa o híbrida</li>
             <li>Hasta 5 pantallas</li>
             <li>Conexión a backend</li>
           </ul>
-          <a class="btn ghost" href="mailto:info@ramiroceballes.com.ar?subject=Solicitud%20App%20Móvil">Solicitar pedido</a>
+          <a class="btn ghost" href="mailto:info@ramiroceballes.com.ar?subject=Solicitud%20App%20M%C3%B3vil">Solicitar pedido</a>
         </article>
         <article class="plan-card">
           <h3>App de Escritorio</h3>
@@ -395,7 +401,7 @@
             <li>Roadmap y mejoras</li>
             <li>Coaching técnico</li>
           </ul>
-          <a class="btn ghost" href="mailto:info@ramiroceballes.com.ar?subject=Consulta%20Consultoría">Solicitar pedido</a>
+          <a class="btn ghost" href="mailto:info@ramiroceballes.com.ar?subject=Consulta%20Consultor%C3%ADa">Solicitar pedido</a>
         </article>
       </div>
     </div>
@@ -419,11 +425,11 @@
         <input type="hidden" name="_template" value="table">
         <label>
           Nombre
-          <input type="text" name="name" placeholder="Tu nombre" required minlength="4">
+          <input type="text" name="name" placeholder="Tu nombre" autocomplete="name" required minlength="2">
         </label>
         <label>
           Email
-          <input type="email" name="email" placeholder="Tu email" required>
+          <input type="email" name="email" placeholder="Tu email" autocomplete="email" required>
         </label>
         <label>
           Asunto
@@ -434,6 +440,7 @@
           <textarea name="message" rows="5" placeholder="Contame sobre tu proyecto" required></textarea>
         </label>
         <button type="submit" class="btn primary">Enviar mensaje</button>
+        <p class="form-status" role="status" aria-live="polite" hidden></p>
       </form>
     </div>
   </section>
@@ -450,7 +457,7 @@
     </div>
   </footer>
 
-  <a href="#" class="back-to-top" aria-label="Volver arriba"><i class="fa fa-chevron-up"></i></a>
+  <a href="#home" class="back-to-top" aria-label="Volver arriba"><i class="fa fa-chevron-up"></i></a>
 
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/jquery/jquery-migrate.min.js"></script>
@@ -461,32 +468,73 @@
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
 
+    navToggle.setAttribute('aria-expanded', 'false');
     navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-      navToggle.classList.toggle('open');
+      const open = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', String(open));
+      navToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
     });
+    navLinks.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }));
 
+    // Formulario de contacto (FormSubmit, endpoint AJAX que devuelve JSON).
+    // Solo se muestra "enviado" si el servicio confirma success; si no, se ofrece WhatsApp.
     const form = document.getElementById('contact-form');
+    const formStatus = form.querySelector('.form-status');
+    const formButton = form.querySelector('button[type="submit"]');
+
+    function whatsappLink() {
+      const d = new FormData(form);
+      const text = [
+        'Hola Ramiro, te escribo desde tu web.',
+        'Nombre: ' + (d.get('name') || ''),
+        'Email: ' + (d.get('email') || ''),
+        'Asunto: ' + (d.get('subject') || ''),
+        '',
+        d.get('message') || ''
+      ].join('\n');
+      return 'https://wa.me/5493518166933?text=' + encodeURIComponent(text);
+    }
+
+    function showStatus(ok, html) {
+      formStatus.hidden = false;
+      formStatus.className = 'form-status ' + (ok ? 'is-ok' : 'is-error');
+      formStatus.innerHTML = html;
+    }
+
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
+      formButton.disabled = true;
+      formButton.textContent = 'Enviando…';
+      formStatus.hidden = true;
 
-      const formData = new FormData(form);
-
+      let sent = false;
       try {
-        const res = await fetch("https://formsubmit.co/ramiro.adrian.ceballes@gmail.com", {
-          method: "POST",
-          body: formData
+        const res = await fetch('https://formsubmit.co/ajax/ramiro.adrian.ceballes@gmail.com', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
         });
-
-        if (res.ok) {
-          alert("¡Mensaje enviado correctamente!");
-          form.reset();
-        } else {
-          alert("Error al enviar el mensaje. Por favor, intenta más tarde.");
-        }
+        const data = await res.json().catch(() => ({}));
+        sent = res.ok && String(data.success) === 'true';
       } catch (err) {
-        alert("Hubo un problema con la conexión. Intenta nuevamente.");
+        sent = false;
       }
+
+      if (sent) {
+        showStatus(true, '¡Listo! Recibí tu mensaje y te respondo a la brevedad.');
+        form.reset();
+      } else {
+        showStatus(false, 'No se pudo enviar el mensaje. Tus datos siguen cargados: ' +
+          '<a href="' + whatsappLink() + '" target="_blank" rel="noopener">mandámelo por WhatsApp</a> ' +
+          'o escribime a <a href="mailto:info@ramiroceballes.com.ar">info@ramiroceballes.com.ar</a>.');
+      }
+      formButton.disabled = false;
+      formButton.textContent = 'Enviar mensaje';
     });
   </script>
 </body>
